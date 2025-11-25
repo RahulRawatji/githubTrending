@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import getListItems from "../api/getListItem";
 import ListItem from "./ListItem";
+import Loader from "./Loader";
 
 function List() {
     const [listData, setListData] = useState();
@@ -31,11 +32,8 @@ function List() {
 
 
     return <>
-        <ul className="h-[80vh] overflow-scroll px-4 overflow-x-hidden">
-            {isLoading ? <p>Loading...</p> : listData.map(item => {
-                console.log(item)
-                return <ListItem key={item.id} data={item} />
-            })}
+        <ul className="h-[80vh] overflow-scroll px-4 overflow-x-hidden justify-center items-center">
+            {isLoading ? <Loader/> : listData.map(item => <ListItem key={item.id} data={item} />)}
         </ul>
     </>
 
