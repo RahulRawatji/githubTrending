@@ -3,12 +3,11 @@ import { useRef } from "react";
 
 function ListItem({key, data, isLast, loadNewPage }) {
     const itemRef = useRef(null);
-    const loadMoreRef = useRef();
     const isInView = useInView(itemRef, { amount: 0.6 });
 
 
     return <>
-    <motion.li key={key} ref={itemRef} role="button" onClick={()=>window.open(data?.html_url)} className="py-2 px-1 rounded bg-[#8FABD4] my-2 scale-y-95 hover:scale-110 cursor-pointer" id={data.id}
+    <motion.li ref={itemRef} role="button" onClick={()=>window.open(data?.html_url)} className="py-2 px-1 rounded bg-[#8FABD4] my-2 scale-y-95 hover:scale-110 cursor-pointer" id={data.id}
         animate={isInView ? { opacity: 1 } : { opacity: 0, }}
        
     >

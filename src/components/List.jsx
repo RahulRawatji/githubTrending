@@ -17,15 +17,15 @@ function List() {
         } else {
             fetchListData();
         }
-    }, [pageChange]); 
+    }, [pageChange]);
 
     async function fetchListData() {
         const response = await getListItems(pageChange);
         if (!response.error) {
-            setListData(prev=>[...prev,...response.data.items]);
+            setListData(prev => [...prev, ...response.data.items]);
             setIsLoading(false);
 
-            localStorage.setItem(`gitTData`, JSON.stringify([...listData,...response.data.items]))
+            localStorage.setItem(`gitTData`, JSON.stringify([...listData, ...response.data.items]))
         } else {
             setError(true);
         }
@@ -33,11 +33,11 @@ function List() {
 
     return <>
         <ul className="h-[80vh] overflow-scroll px-4 overflow-x-hidden justify-center items-center md:px-[25%]">
-            {isLoading ? <Loader/> : listData.map((item,idx) => <ListItem 
-            key={item.id}
-            data={item}
-            isLast={listData.length-1 ==idx}
-            loadNewPage={setPageChange}/>)}
+            {isLoading ? <Loader /> : listData.map((item, idx) => <ListItem
+                key={item.id}
+                data={item}
+                isLast={listData.length - 1 == idx}
+                loadNewPage={setPageChange} />)}
         </ul>
     </>
 
