@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import getListItems from "../api/getListItem";
 import ListItem from "./ListItem";
 import Loader from "./Loader";
+import SearchBar from "./SearchBar";
 
 function List() {
     const [listData, setListData] = useState([]);
@@ -32,8 +33,20 @@ function List() {
         }
     }
 
+    function filteredTextHandler(text){
+       if(!text.length){
+            const localData = JSON.parse(localStorage.getItem(`gitTData`)) || null;  
+            setListData(prev=>localData);
+       }else{
+        const tempData = listData.filter(item=>item.name.toLowerCase().includes(text) || item?.owner?.login.toLowerCase().includes(text) );
+        setListData(prev=>tempData)
+       }
+        
+    }
+
     return <>
-        <ul className="h-[80dvh] overflow-scroll px-4 overflow-x-hidden justify-center items-center md:px-[25%]">
+        <SearchBar filterText={filteredTextHandler}/>
+        <ul className="h-[70dvh] overflow-scroll px-4 overflow-x-hidden justify-center items-center">
             {isLoading ? <Loader /> : listData.map((item, idx) => <ListItem
                 key={item.id}
                 data={item}

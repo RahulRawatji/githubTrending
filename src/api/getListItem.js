@@ -3,7 +3,7 @@ import axios from "axios";
 async function getListItems(pageNo = null) {
     try {
         const currDate = new Date();
-        currDate.setDate(currDate.getDate() - 1);
+        currDate.setDate(currDate.getDate() - 10);
 
         const yesterday = currDate.toISOString().split("T")[0];
 

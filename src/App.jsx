@@ -12,11 +12,11 @@ function App() {
 
   return (
     <>
-      <div className='md:px-25'>
+      <div className='lg:px-[25%] md:px-[10%]'>
         <Header />
         <List />
         <div className='mt-2'>
-          <p className='text-center font-mono'>Listing Trending github repos for the day</p>
+          <p className='text-center font-mono'>The most starred GitHub projects created in the last 10 days.</p>
         </div>
       </div>
     </>
