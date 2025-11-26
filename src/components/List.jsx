@@ -32,7 +32,7 @@ function List() {
     }
 
     return <>
-        <ul className="h-[80vh] overflow-scroll px-4 overflow-x-hidden justify-center items-center md:px-[25%]">
+        <ul className="h-[80dvh] overflow-scroll px-4 overflow-x-hidden justify-center items-center md:px-[25%]">
             {isLoading ? <Loader /> : listData.map((item, idx) => <ListItem
                 key={item.id}
                 data={item}
