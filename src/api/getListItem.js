@@ -2,12 +2,13 @@ import axios from "axios";
 
 async function getListItems(pageNo=null){
     try{
+        console.log(pageNo)
         const currDate = new Date();
             currDate.setDate(currDate.getDate() - 1);
 
         const yesterday = currDate.toISOString().split("T")[0];
 
-        const response =  await axios(`https://api.github.com/search/repositories?q=created:%3e${yesterday}&sort=stars&order=desc${pageNo? +`&page=${pageNo}` :''}`);
+        const response =  await axios(`https://api.github.com/search/repositories?q=created:%3e${yesterday}&sort=stars&order=desc${pageNo?`&page=${pageNo}` :''}`);
         
         if(response.status === 200){
              return {data : response.data};
