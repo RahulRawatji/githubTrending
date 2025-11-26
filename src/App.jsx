@@ -1,8 +1,14 @@
+import { useEffect } from 'react'
 import './App.css'
 import Header from './components/Header'
 import List from './components/List'
+import { cacheStepup } from './api/utils'
 
 function App() {
+
+  useEffect(()=>{
+    cacheStepup()
+  },[])
 
   return (
     <>

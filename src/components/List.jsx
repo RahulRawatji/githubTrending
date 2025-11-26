@@ -22,10 +22,11 @@ function List() {
     async function fetchListData() {
         const response = await getListItems(pageChange);
         if (!response.error) {
+            const tempListData = [...listData];
             setListData(prev => [...prev, ...response.data.items]);
             setIsLoading(false);
 
-            localStorage.setItem(`gitTData`, JSON.stringify([...listData, ...response.data.items]))
+            localStorage.setItem(`gitTData`, JSON.stringify([...tempListData, ...response.data.items]))
         } else {
             setError(true);
         }
