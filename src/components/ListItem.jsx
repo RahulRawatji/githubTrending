@@ -25,14 +25,17 @@ function ListItem({ data, isLast }) {
                     if(!isLoading){
                         updatePage();
                     }
-                spinner.current.style.display = "flex";
-            }, 4000)
+                    if(spinner){
+                        spinner.current.style.display = "flex";
+                    }
+                }, 4000)
             })(isLoading)
         }
     }
 
     const updateList = delayFun();
     if (isloadMoreItemsInView) { 
+        spinner.current.style.display = "none";
         updateList();
     }
 

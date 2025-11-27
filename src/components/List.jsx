@@ -18,9 +18,18 @@ function List() {
         clearFilterData();
     }
 
+    function listion(e){
+         const headingText = document.getElementById('gt-top-heading-container');
+        if(e.target.scrollTop>300){   
+            headingText.classList.add('slide-out-up');
+        }else{
+            headingText.classList.remove('slide-out-up')
+        }
+    }
+
     return <>
         <SearchBar filterText={filteredTextHandler} />
-        <ul className="h-[70dvh] overflow-scroll px-4 overflow-x-hidden justify-center items-center">
+        <ul onScroll={listion} className="h-[70dvh] overflow-scroll px-4 overflow-x-hidden justify-center items-center">
             {isLoading ? [...Array(10)].map((_, i) => <Loader />) : (currData.length ? currData.map((item, idx) => <ListItem
                 key={item.id}
                 data={item}
