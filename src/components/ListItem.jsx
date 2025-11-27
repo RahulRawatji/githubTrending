@@ -15,7 +15,7 @@ function ListItem({ data, isLast, loadNewPage }) {
             <div className="flex gap-2 items-center">
                 <img src={data?.owner?.avatar_url} loading="lazy" title="User Avatar" className="h-[40px] object-contain bg-gray-100 rounded-lg" />
                 <span className="font-medium text-md">{data?.owner?.login}</span>
-                <span className="font-medium text-md">{data?.name}</span>
+                <span className="font-medium text-sm">/ {data?.name}</span>
             </div>
             <p className="break-all mt-4 text-sm">{data?.description || "No Description Provided"}</p>
             <div className="flex justify-start px-1 mt-2 items-end gap-3">
