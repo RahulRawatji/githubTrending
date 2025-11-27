@@ -5,39 +5,17 @@ import Header from './components/Header'
 import List from './components/List'
 import { cacheStepup } from './api/utils';
 
-import './App.css'
-import getListItems from './api/getListItem';
+import './App.css';
 
 function App() {
 
-  const {addRepoData, currPage, repoData, setIsLoading} = useStore((state) => state);
- 
+  const {addRepoData, currPage, setIsLoading} = useStore((state) => state);
 
   useEffect(() => {
     cacheStepup();
     setIsLoading();
-    setStoreRepoData();
+    addRepoData();
   }, [currPage])
-
-  async function setStoreRepoData() {
-    try {
-      const localData = JSON.parse(localStorage.getItem('gitTData'));
-      if (localData && currPage == 1) {
-        addRepoData(localData);
-      } else {
-        const response = await getListItems(currPage);
-        if (!response.error) {
-          addRepoData([...repoData,...response.data.items]);
-          if(currPage == 1){
-            localStorage.setItem(`gitTData`, JSON.stringify([...response.data.items]))
-          }       
-        }
-      }
-    } catch (error) {
-      console.log(error)
-    }
-
-  }
 
   return (
     <>

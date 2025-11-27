@@ -7,12 +7,12 @@ import { Spinner } from "@/components/ui/spinner"
 import Loader from "./Loader";
 
 
-function ListItem({ data, isLast, loadNewPage }) {
+function ListItem({ data, isLast }) {
     const itemRef = useRef(null);
     const spinner = useRef(null);
     const isloadMoreItemsInView = useInView(spinner, { amount: 0.9 });
     const isInView = useInView(itemRef, { amount: 0.6 });
-    const { isFiltered, updatePage, currPage, isLoading } = useStore(state => state);
+    const { isFiltered, updatePage, isLoading } = useStore(state => state);
 
     const delayFun = function (){
         let timer = null;

@@ -2,7 +2,6 @@ import { RiMoonFill, RiGithubLine } from "react-icons/ri";
 
 function Header() {
 
-
     return <div className="position-sticky t-0">
         <div className="flex gap-1 items-center border-b p-2 justify-between">
             <div className="flex gap-1 items-center">

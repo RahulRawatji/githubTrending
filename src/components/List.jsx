@@ -1,4 +1,3 @@
-import { useState } from "react";
 import SearchBar from "./SearchBar";
 import { RiEmotionSadLine } from "react-icons/ri";
 
@@ -26,7 +25,7 @@ function List() {
                 key={item.id}
                 data={item}
                 isLast={currData.length - 1 == idx}
-                loadNewPage={""} />) : <div className="w-full h-16 flex justify-center items-center text-md bg-[#F0F0F0] rounded-sm"><RiEmotionSadLine size={28} className="mr-2"/> No Results found</div>)}
+                isFirst = {idx == 0} />) : <div className="w-full h-16 flex justify-center items-center text-md bg-[#F0F0F0] rounded-sm"><RiEmotionSadLine size={28} className="mr-2"/> No Results found</div>)}
         </ul>
     </>
 
