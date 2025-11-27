@@ -1,14 +1,40 @@
 import { useEffect } from 'react'
-import './App.css'
+import { useStore } from './store/store'
+
 import Header from './components/Header'
 import List from './components/List'
-import { cacheStepup } from './api/utils'
+import { cacheStepup } from './api/utils';
+
+import './App.css'
+import getListItems from './api/getListItem';
 
 function App() {
 
-  useEffect(()=>{
-    cacheStepup()
-  },[])
+  const addRepoData = useStore((state) => state.addRepoData);
+  const currPage = useStore(state => state.currPage);
+
+  useEffect(() => {
+    cacheStepup();
+    setStoreRepoData();
+  }, [currPage])
+
+  async function setStoreRepoData() {
+    try {
+      const localData = JSON.parse(localStorage.getItem('gitTData'));
+      if (localData) {
+        addRepoData(localData);
+      } else {
+        const response = await getListItems(currPage);
+        if (!response.error) {
+          addRepoData(response.data.items);
+          localStorage.setItem(`gitTData`, JSON.stringify([...response.data.items]))
+        }
+      }
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
 
   return (
     <>

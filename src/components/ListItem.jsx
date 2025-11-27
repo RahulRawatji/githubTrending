@@ -1,3 +1,4 @@
+import { useStore } from "@/store/store";
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import { RiStarLine, RiGitForkLine, RiComputerLine } from "react-icons/ri";
@@ -6,7 +7,7 @@ import { RiStarLine, RiGitForkLine, RiComputerLine } from "react-icons/ri";
 function ListItem({ data, isLast, loadNewPage }) {
     const itemRef = useRef(null);
     const isInView = useInView(itemRef, { amount: 0.6 });
-
+     const { isFiltered } = useStore(state => state);
 
     return <>
         <motion.li ref={itemRef} role="button" onClick={() => window.open(data?.html_url)} className="py-4 px-6 rounded bg-[#F0F0F0] my-6 cursor-pointer hover:scale-98 hover:bg-[#F5EFE6] hover:border-[#896C6C]" id={data.id}
@@ -33,7 +34,7 @@ function ListItem({ data, isLast, loadNewPage }) {
                 </div>
             </div>
         </motion.li>
-        {isLast ? <div>
+        {isLast && !isFiltered ? <div>
             <button className=" text-white py-2 rounded w-full bg-gray-400" onClick={() => loadNewPage(prev => prev + 1)}>Load More</button>
         </div> : null}
     </>

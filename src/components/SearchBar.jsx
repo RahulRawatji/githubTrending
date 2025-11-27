@@ -7,9 +7,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useStore } from "@/store/store";
 
 
 export default function SearchBar({ filterText }) {
+
+  const { sortRepoData } = useStore(state=>state);
 
   function deBouncInput() {
     let timer = null;
@@ -27,7 +30,7 @@ export default function SearchBar({ filterText }) {
 
   return <div className="flex px-2 mx-2 mb-6 gap-3">
     <Input onChange={(e) => inpuTextHandler(e)} placeholder="Search Repository" className="border rounded-md w-full px-1 py-2" />
-    <Select>
+    <Select onValueChange={sortRepoData}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Sort" />
       </SelectTrigger>
