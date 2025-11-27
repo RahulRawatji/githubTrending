@@ -9,25 +9,25 @@ import {
 } from "@/components/ui/select";
 
 
-export default function SearchBar({filterText}) {
+export default function SearchBar({ filterText }) {
 
-    function deBouncInput(){
-        let timer = null;
-        return function (e){
-            if(timer){
-                clearTimeout(timer)
-            }
-            timer = setTimeout(()=>{
-               filterText(e.target.value)
-            },1000)
-        }
-    } 
-    
-    const inpuTextHandler = deBouncInput();
+  function deBouncInput() {
+    let timer = null;
+    return function (e) {
+      if (timer) {
+        clearTimeout(timer)
+      }
+      timer = setTimeout(() => {
+        filterText(e.target.value)
+      }, 1000)
+    }
+  }
 
-    return <div className="flex px-2 mx-2 mb-6 gap-3">
-        <Input onChange={(e)=>inpuTextHandler(e)} placeholder="Search Repository" className="border rounded-md w-full px-1 py-2" />
-         <Select>
+  const inpuTextHandler = deBouncInput();
+
+  return <div className="flex px-2 mx-2 mb-6 gap-3">
+    <Input onChange={(e) => inpuTextHandler(e)} placeholder="Search Repository" className="border rounded-md w-full px-1 py-2" />
+    <Select>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Sort" />
       </SelectTrigger>
@@ -39,5 +39,5 @@ export default function SearchBar({filterText}) {
         </SelectGroup>
       </SelectContent>
     </Select>
-    </div>
+  </div>
 }
