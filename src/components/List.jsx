@@ -47,7 +47,7 @@ function List() {
     return <>
         <SearchBar filterText={filteredTextHandler}/>
         <ul className="h-[70dvh] overflow-scroll px-4 overflow-x-hidden justify-center items-center">
-            {isLoading ? <Loader /> : listData.map((item, idx) => <ListItem
+            {isLoading ? [...Array(10)].map((_, i)=><Loader />) : listData.map((item, idx) => <ListItem
                 key={item.id}
                 data={item}
                 isLast={listData.length - 1 == idx}

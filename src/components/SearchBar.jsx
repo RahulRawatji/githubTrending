@@ -1,3 +1,14 @@
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+
 export default function SearchBar({filterText}) {
 
     function deBouncInput(){
@@ -14,12 +25,19 @@ export default function SearchBar({filterText}) {
     
     const inpuTextHandler = deBouncInput();
 
-    return <div className="flex px-2 mx-2 mb-6">
-        <input onChange={(e)=>inpuTextHandler(e)} placeholder="Search Repository (Type Here)" className="border rounded-md w-full px-1 py-2" />
-        {/* <select name="cars" id="cars" className="ml-4 p-2">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-        </select> */}
+    return <div className="flex px-2 mx-2 mb-6 gap-3">
+        <Input onChange={(e)=>inpuTextHandler(e)} placeholder="Search Repository" className="border rounded-md w-full px-1 py-2" />
+         <Select>
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="Sort" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectItem value="stars">Most Stars</SelectItem>
+          <SelectItem value="recent">Recently Updated</SelectItem>
+          <SelectItem value="char">Alphabet [A-Z]</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
     </div>
 }

@@ -1,14 +1,11 @@
 import { motion } from 'motion/react';
+import { Skeleton } from "@/components/ui/skeleton"
 
 function Loader() {
-    return <motion.p className="font-medium text-2xl font-sans"
-        animate={{ opacity: [0, 1, 0], color: ["#3b3636ff", "#456845ff", "#393535ff"] }}
-        transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut"
-        }}
-    >Loading...</motion.p>
+    return <motion.p className="mb-4"
+    >
+      <Skeleton className="h-[100px] w-full bg-zinc-200" />
+     </motion.p>
 }
 
 export default Loader;
