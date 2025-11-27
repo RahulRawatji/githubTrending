@@ -8,8 +8,7 @@ import { useStore } from "@/store/store";
 
 function List() {
     const { repoData, isLoading, filteredData, filterRepoData, isFiltered, clearFilterData } = useStore(state => state);
-    const [error, setError] = useState(false);
-
+  
     const currData = isFiltered ? filteredData : repoData
 
     function filteredTextHandler(text) {

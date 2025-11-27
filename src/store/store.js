@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from 'zustand'
 
 export const useStore = create((set) => ({
     repoData: [],
@@ -41,4 +41,6 @@ export const useStore = create((set) => ({
             filteredData: [],
             isFiltered: false,
         })),
+    updatePage:()=>set((state)=>({...state,currPage:state.currPage+1})),
+    setIsLoading:()=>set((state)=>({...state,isLoading:true}))
 }))

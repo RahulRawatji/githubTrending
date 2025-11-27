@@ -10,24 +10,27 @@ import getListItems from './api/getListItem';
 
 function App() {
 
-  const addRepoData = useStore((state) => state.addRepoData);
-  const currPage = useStore(state => state.currPage);
+  const {addRepoData, currPage, repoData, setIsLoading} = useStore((state) => state);
+ 
 
   useEffect(() => {
     cacheStepup();
+    setIsLoading();
     setStoreRepoData();
   }, [currPage])
 
   async function setStoreRepoData() {
     try {
       const localData = JSON.parse(localStorage.getItem('gitTData'));
-      if (localData) {
+      if (localData && currPage == 1) {
         addRepoData(localData);
       } else {
         const response = await getListItems(currPage);
         if (!response.error) {
-          addRepoData(response.data.items);
-          localStorage.setItem(`gitTData`, JSON.stringify([...response.data.items]))
+          addRepoData([...repoData,...response.data.items]);
+          if(currPage == 1){
+            localStorage.setItem(`gitTData`, JSON.stringify([...response.data.items]))
+          }       
         }
       }
     } catch (error) {

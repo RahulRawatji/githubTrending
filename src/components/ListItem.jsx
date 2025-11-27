@@ -1,13 +1,40 @@
-import { useStore } from "@/store/store";
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import { RiStarLine, RiGitForkLine, RiComputerLine } from "react-icons/ri";
 
+import { useStore } from "@/store/store";
+import { Spinner } from "@/components/ui/spinner"
+import Loader from "./Loader";
+
 
 function ListItem({ data, isLast, loadNewPage }) {
     const itemRef = useRef(null);
+    const spinner = useRef(null);
+    const isloadMoreItemsInView = useInView(spinner, { amount: 0.9 });
     const isInView = useInView(itemRef, { amount: 0.6 });
-     const { isFiltered } = useStore(state => state);
+    const { isFiltered, updatePage, currPage, isLoading } = useStore(state => state);
+
+    const delayFun = function (){
+        let timer = null;
+        return function (){
+            if(timer){
+                clearTimeout(timer)
+            }
+            (function(){
+                setTimeout(() => {
+                    if(!isLoading){
+                        updatePage();
+                    }
+                spinner.current.style.display = "flex";
+            }, 4000)
+            })(isLoading)
+        }
+    }
+
+    const updateList = delayFun();
+    if (isloadMoreItemsInView) { 
+        updateList();
+    }
 
     return <>
         <motion.li ref={itemRef} role="button" onClick={() => window.open(data?.html_url)} className="py-4 px-6 rounded bg-[#F0F0F0] my-6 cursor-pointer hover:scale-98 hover:bg-[#F5EFE6] hover:border-[#896C6C]" id={data.id}
@@ -22,20 +49,20 @@ function ListItem({ data, isLast, loadNewPage }) {
             <div className="flex justify-start px-1 mt-2 items-end gap-3">
                 <div className="flex mr-1 justify-end">
                     <span className="text-xs text-yellow-500" >{data?.stargazers_count}</span>
-                    <RiStarLine className="text-yellow-500 ml-1"/>
+                    <RiStarLine className="text-yellow-500 ml-1" />
                 </div>
                 <div className="flex mr-1 justify-end">
                     <span className="text-xs text-blue-500">{data?.forks}</span>
-                    <RiGitForkLine className="text-blue-500 ml-1"/>
+                    <RiGitForkLine className="text-blue-500 ml-1" />
                 </div>
                 <div className="flex mr-1 justify-end">
                     <span className="text-xs text-red-300">{data?.language}</span>
-                    <RiComputerLine className="text-red-300 ml-1"/>
+                    <RiComputerLine className="text-red-300 ml-1" />
                 </div>
             </div>
         </motion.li>
-        {isLast && !isFiltered ? <div>
-            <button className=" text-white py-2 rounded w-full bg-gray-400" onClick={() => loadNewPage(prev => prev + 1)}>Load More</button>
+        {isLast && !isFiltered ? <div className="w-full flex justify-center h-12">
+            {isloadMoreItemsInView ? [...Array(10)].map((_, i) => <Loader />) : <Spinner ref={spinner} className="text-xl" />}      
         </div> : null}
     </>
 }
