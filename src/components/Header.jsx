@@ -15,7 +15,10 @@ function Header() {
             </div>
         </div>
         <div className="my-4" id="gt-top-heading-container">
-            <h1 className=" text-3xl md:text-4xl sticky top-0 font-medium font-sans text-center " style={{ color: '#4A70A9' }} >Github Trending Repos</h1>
+            <h1 className=" text-3xl md:text-4xl sticky top-0 font-medium font-sans text-center " style={{ color: '#4A70A9' }} >
+                Github Trending Repos
+            </h1>
+             <p className='text-center font-mono text-xs mt-2'>The most starred GitHub projects created in the last 10 days.</p>
         </div>
     </div>
 }

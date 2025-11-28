@@ -19,12 +19,9 @@ function App() {
 
   return (
     <>
-      <div className='lg:px-[25%] md:px-[10%]'>
+      <div className='lg:px-[25%] md:px-[10%] h-[100dvh] overflow-hidden'>
         <Header />
         <List />
-        <div className='mt-2'>
-          <p className='text-center font-mono'>The most starred GitHub projects created in the last 10 days.</p>
-        </div>
       </div>
     </>
   )
