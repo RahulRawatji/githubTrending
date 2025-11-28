@@ -43,7 +43,7 @@ function ListItem({ data, isLast }) {
         <motion.li ref={itemRef} 
                 role="button"
                 onClick={() => window.open(data?.html_url)} 
-                className="py-4 px-6 rounded bg-[#F0F0F0] my-6 cursor-pointer hover:scale-98 hover:bg-[#F5EFE6] hover:border-[#896C6C] dark:bg-zinc-900" 
+                className="py-4 px-6 rounded bg-[#F0F0F0] my-6 cursor-pointer hover:scale-98 hover:bg-[#F5EFE6] hover:border-[#896C6C] dark:bg-zinc-900 dark:hover:bg-zinc-500" 
                 id={data.id}
                 animate={isInView ? { opacity: 1 } : { opacity: 0, }}
         >
