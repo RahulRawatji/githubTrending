@@ -44,7 +44,7 @@ function List() {
 
     return <>
         <SearchBar filterText={filteredTextHandler} />
-        <ul ref={listRef} onScroll={scrollHandler} className="h-full overflow-scroll px-4 overflow-x-hidden justify-center items-center">
+        <ul ref={listRef} onScroll={scrollHandler} className="h-[90dvh] overflow-scroll px-4 overflow-x-hidden justify-center items-center">
             {isLoading ? [...Array(10)].map((_, i) => <Loader />) : (currData.length ? currData.map((item, idx) => <ListItem
                 key={item.id}
                 data={item}

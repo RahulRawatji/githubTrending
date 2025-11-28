@@ -19,7 +19,7 @@ function App() {
 
   return (
     <>
-      <div className='lg:px-[25%] md:px-[10%] h-[100dvh] overflow-hidden'>
+      <div className='lg:px-[25%] md:px-[10%] overflow-hidden'>
         <Header />
         <List />
       </div>

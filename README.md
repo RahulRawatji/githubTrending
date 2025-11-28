@@ -7,4 +7,14 @@
 
 - React
 - Tailwind CSS
+- Shadcn
+- Zustand
 - Framer Motion
+- ReactIcons
+
+# Features
+ - Optimized API Calls
+ - Infinite Scroll
+ - Scroll Top Btn
+ - List Item Fade Out Animation
+ 
