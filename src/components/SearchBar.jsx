@@ -30,7 +30,7 @@ export default function SearchBar({ filterText }) {
   const inpuTextHandler = deBouncInput();
 
   return <div className="flex px-2 mx-2 mb-6 gap-3 mt-3">
-    <Input onChange={(e) => inpuTextHandler(e)} placeholder="Search Repository" className="border rounded-md w-full px-1 py-2 dark:text-zinc-100 dark:bg-zinc-100" />
+    <Input onChange={(e) => inpuTextHandler(e)} placeholder="Search Repository" className="border rounded-md w-full px-1 py-2 dark:bg-zinc-100" />
     <Select onValueChange={sortRepoData} className="dark:bg-zinc-100">
       <SelectTrigger className="w-[180px]  dark:bg-zinc-100">
         <SelectValue placeholder="Sort" />
